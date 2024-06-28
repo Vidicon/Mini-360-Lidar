@@ -20,37 +20,44 @@ header: 8 bytes
 data: 16 * 3 = 48 bytes
 Trailer: 4 bytes
 
-TODO/WIP:
-<0x55><0xAA><TYPE><DATA_LENGHT><SPEED_L><SPEED_H><START_ANGLE_L><START_ANGLE_H> [measurement data 16x  <DISTANCE_L><DISTANCE_H><INTENSITY>] <END_ANGLE_L><END_ANGLE_H><CRC_L?><CRC_H?>
+TODO/WIP:  
+<0x55><0xAA>  
+<TYPE>  
+<DATA_LENGHT>  
+<SPEED_L><SPEED_H>  
+<START_ANGLE_L><START_ANGLE_H>  
+[measurement data 16x  <DISTANCE_L><DISTANCE_H><INTENSITY>]  
+<END_ANGLE_L><END_ANGLE_H>  
+<CRC_L?><CRC_H?>  
 
 Type: always 0x23
 DATA_LENGHT always 0x10 (16 dec)
 
-uint16_t distance = (((data[9+offset] & 0x3F) << 8) | data[8+offset]) * 0.1; // mm
-uint8_t xdata = data[9+offset] >> 6; // seems to indicate if it uses tof or triangelation but im not sure.... (changes from 1 to 0 at a distance of XXmm)
-uint8_t strength = data[10+offset];
+uint16_t distance = (((data[9+offset] & 0x3F) << 8) | data[8+offset]) * 0.1; // mm  
+uint8_t xdata = data[9+offset] >> 6; // seems to indicate if it uses tof or triangelation but im not sure.... (changes from 1 to 0 at a distance of XXmm)  
+uint8_t strength = data[10+offset];  
 
-example package:
-55 aa header
-23  type
-10 size(16 dec)
-6e 5a speed
+### example package:  
+55 aa header  
+23  type  
+10 size(16 dec)  
+6e 5a speed  
 4e f7 start ange
-61 43 47 data0
-6e 43 3e data1
-7f 43 08 data2
-30 87 00 data3
-00 86 00 data4
-91 41 06 data5
-86 41 09 data6
-75 41 0a data7
-68 41 09 data8
-5d 41 0a data9
-4f 41 0a data10
-47 41 0b data11
-3c 41 0c data12
-32 41 0c data13
-2c 41 0c data14
-22 41 0e data15
-d7 f9 end_angle
-e9 0b crc?
+61 43 47 data0  
+6e 43 3e data1  
+7f 43 08 data2  
+30 87 00 data3  
+00 86 00 data4  
+91 41 06 data5  
+86 41 09 data6  
+75 41 0a data7  
+68 41 09 data8  
+5d 41 0a data9  
+4f 41 0a data10  
+47 41 0b data11  
+3c 41 0c data12  
+32 41 0c data13  
+2c 41 0c data14  
+22 41 0e data15  
+d7 f9 end_angle  
+e9 0b crc?  
