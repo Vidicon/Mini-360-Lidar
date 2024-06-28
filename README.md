@@ -31,7 +31,9 @@ TODO/WIP:
 <CRC_L?><CRC_H?>  
 
 Type: always 0x23
-DATA_LENGHT always 0x10 (16 dec)
+DATA_LENGHT always 0x10 (16 dec)  
+
+uint16_t start_angle = (((data[7] & 0x7F) << 8) + data[6]) - 0x2000;  
 
 uint16_t distance = (((data[9+offset] & 0x3F) << 8) | data[8+offset]) * 0.1; // mm  
 uint8_t xdata = data[9+offset] >> 6; // seems to indicate if it uses tof or triangelation but im not sure.... (changes from 1 to 0 at a distance of XXmm)  
