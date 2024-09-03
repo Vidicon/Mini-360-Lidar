@@ -12,23 +12,24 @@ The Mini 360 degree Lidar seems to be a lidar for LDRobot but I cant find a exec
 The lidar seems to be used in the [360 Smart Life S10](https://smart.360.com/robot/s10.html) but it could be to a slightly difrent model as this replacement part is not identical: [replacment lidar](https://www.ep-mediastore-ab.de/360-s10-mini-lds-lidar-sensor-ld06-p-62332.html)
 
 ## Protocol
-packages of 60 bytes
-
-
-
+packages of 60 bytes:  
+```
 header: 8 bytes
 data: 16 * 3 = 48 bytes
 Trailer: 4 bytes
+```
+### normal package layout:   
 
-TODO/WIP:  
+```
 <0x55><0xAA>  
 <TYPE>  
-<DATA_LENGHT>  
-<SPEED_L><SPEED_H>  
-<START_ANGLE_L><START_ANGLE_H>  
-[measurement data 16x  <DISTANCE_L><DISTANCE_H><INTENSITY>]  
-<END_ANGLE_L><END_ANGLE_H>  
-<CRC_L?><CRC_H?>  
+<data_lenght>  
+<speed_L><speed_H>  
+<start_angle_L><start_angle_H>  
+[measurement data 16x  <distance_L><distance_H><intensity>]  
+<end_angle_L><end_angle_H>  
+<crc16_L?><crc16_H?>  
+```
 
 Type: always 0x23
 DATA_LENGHT always 0x10 (16 dec)  
